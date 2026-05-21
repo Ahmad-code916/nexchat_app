@@ -17,7 +17,7 @@ class ChatbotScreenController extends GetxController {
   bool isLoading = false;
   late String threadId;
 
-  final String apiKey = '123';
+  final String apiKey = 'AIzaSyAWOqkxuVahX11YEuuctmTzd86_QwUVmH4';
   final String url =
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
   Future<String> sendMessage() async {

@@ -48,4 +48,10 @@ class HomeScreenController extends GetxController {
     await subscription?.cancel();
     super.onClose();
   }
+
+  @override
+  void onInit() {
+    getUserData();
+    super.onInit();
+  }
 }

@@ -9,8 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PersonalDetailsScreenController extends GetxController {
@@ -221,7 +219,6 @@ class PersonalDetailsScreenController extends GetxController {
         UserBaseController.updateUserModel(
           UserModel.fromMap(userModel.toMap()),
         );
-        Get.snackbar('Congratulations', 'Account Created Successfully!');
         Get.to(() => InterestsScreen(), arguments: {'userModel': userModel});
         isLoading = false;
         update();

@@ -32,7 +32,7 @@ class UploadIdScreen extends StatelessWidget {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
-                          onTap: () => Get.back(),
+                          onTap: () => Navigator.of(Get.context!).pop(),
                           child: Image.asset(AppImages.backIcon, height: 20),
                         ),
                       ),

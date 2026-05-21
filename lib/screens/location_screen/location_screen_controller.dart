@@ -2,7 +2,6 @@ import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:destined_app/models/user_model.dart';
 import 'package:destined_app/screens/home_screen/home_screen.dart';
-import 'package:destined_app/services/app_functions.dart';
 import 'package:destined_app/services/user_base_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -121,7 +120,7 @@ class LocationScreenController extends GetxController {
         UserBaseController.updateUserModel(
           UserModel.fromMap(userModel2.toMap()),
         );
-        AppFunctions.showSnakBar('Updaed!', 'Location added to your data.');
+        // AppFunctions.showSnakBar('Updaed!', 'Location added to your data.');
         Get.offAll(HomeScreen());
         isUpdatingData = false;
         update();

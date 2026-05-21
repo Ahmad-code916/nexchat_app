@@ -211,24 +211,26 @@ class ChatScreenController extends GetxController {
             .doc(threadId)
             .update({'lastMessage': 'Message Deleted!'});
         Get.back();
-        AppFunctions.showSnakBar('Deleted', 'This message has deleted.');
+        // AppFunctions.showSnakBar('Deleted', 'This message has deleted.');
         update();
       },
     );
   }
 
   void pickImage() async {
-    final picker = ImagePicker();
-    final pickedImage = await picker.pickImage(source: ImageSource.camera);
-    if (pickedImage != null) {
-      image = File(pickedImage.path);
-      updateValue('');
-      update();
-    } else {
-      Get.dialog(
-        AlertDialog(title: Text('Error!'), content: Text('No Image Selected.')),
-      );
-    }
+    image = await AppFunctions.pickImage();
+    update();
+    // final picker = ImagePicker();
+    // final pickedImage = await picker.pickImage(source: ImageSource.camera);
+    // if (pickedImage != null) {
+    //   image = File(pickedImage.path);
+    //   updateValue('');
+    //   update();
+    // } else {
+    //   Get.dialog(
+    //     AlertDialog(title: Text('Error!'), content: Text('No Image Selected.')),
+    //   );
+    // }
   }
 
   Future<String> uploadImage() async {

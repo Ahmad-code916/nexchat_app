@@ -5,7 +5,6 @@ import 'package:destined_app/screens/interests_screen/interests_screen.dart';
 import 'package:destined_app/screens/location_screen/location_screen.dart';
 import 'package:destined_app/screens/personal_details_screen/personal_details_screen.dart';
 import 'package:destined_app/screens/upload_id_screen/upload_id_screen.dart';
-import 'package:destined_app/services/app_functions.dart';
 import 'package:destined_app/services/user_base_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -46,7 +45,7 @@ class SplashScreenController extends GetxController {
             Get.offAll(() => HomeScreen());
           }
         } else {
-          AppFunctions.showSnakBar('Error!', 'User not found');
+          // AppFunctions.showSnakBar('Error!', 'User not found');
           Get.offAll(() => PersonalDetailsScreen());
         }
       }

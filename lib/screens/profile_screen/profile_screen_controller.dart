@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:destined_app/models/chatbot_model.dart';
 import 'package:destined_app/models/thread_model.dart';
 import 'package:destined_app/models/user_model.dart';
-import 'package:destined_app/screens/login_screen/login_screen.dart';
+import 'package:destined_app/screens/personal_details_screen/personal_details_screen.dart';
 import 'package:destined_app/screens/widgets/confirm_dialog.dart';
 import 'package:destined_app/screens/widgets/text_form_field_widget.dart';
 import 'package:destined_app/services/app_functions.dart';
@@ -102,8 +102,8 @@ class ProfileScreenController extends GetxController {
       print('^^^^^^^^^^^^^^^^^^^^^^Deleted All Docs');
       isDeletingAccount = false;
       update();
-      Get.back();
-      Get.offAll(() => LoginScreen());
+      Navigator.of(Get.context!).pop();
+      Get.offAll(() => PersonalDetailsScreen());
       update();
     } catch (e) {
       isDeletingAccount = false;
@@ -158,7 +158,7 @@ class ProfileScreenController extends GetxController {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.back();
+                    Navigator.of(Get.context!).pop();
                   },
                   child: Text('Cancel'),
                 ),
@@ -181,7 +181,7 @@ class ProfileScreenController extends GetxController {
                               removeIdFromLikedByofOtherUsers();
                               isLoading = false;
                               update();
-                              Get.back();
+                              Navigator.of(Get.context!).pop();
                             }
                           } catch (e) {
                             isLoading = false;
@@ -247,7 +247,7 @@ class ProfileScreenController extends GetxController {
     }
   }
 
-  void showDialogToLogout() async {
+  void showDialogToLogout() {
     Get.dialog(
       AlertDialog(
         title: Text(
@@ -266,12 +266,13 @@ class ProfileScreenController extends GetxController {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.back();
+                    Navigator.of(Get.context!).pop();
                   },
                   child: Text('Cancel'),
                 ),
                 GestureDetector(
                   onTap: () {
+                    Navigator.of(Get.context!).pop();
                     logOut();
                   },
                   child: Text(
@@ -289,11 +290,11 @@ class ProfileScreenController extends GetxController {
     );
   }
 
-  void logOut() {
+  void logOut() async {
     isLoading = true;
     update();
-    FirebaseAuth.instance.signOut();
-    Get.offAll(() => LoginScreen());
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(() => PersonalDetailsScreen());
     isLoading = false;
     update();
   }

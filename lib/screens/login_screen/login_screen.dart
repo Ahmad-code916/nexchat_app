@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(() => PersonalDetailsScreen());
+                            Navigator.of(Get.context!).pop();
                           },
                           child: Text(
                             AppStrings.createAccount.tr,

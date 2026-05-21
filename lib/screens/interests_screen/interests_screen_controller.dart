@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:destined_app/models/local_list_model.dart';
 import 'package:destined_app/models/user_model.dart';
 import 'package:destined_app/screens/upload_id_screen/upload_id_screen.dart';
-import 'package:destined_app/services/app_functions.dart';
 import 'package:destined_app/services/user_base_controller.dart';
 import 'package:destined_app/utils/app_images.dart';
 import 'package:destined_app/utils/app_strings.dart';
@@ -104,7 +103,6 @@ class InterestsScreenController extends GetxController {
         );
         print('^^^^^^^^^^^^^^^^^^^^^^^^^${UserBaseController.userData.page2}');
         print('^^^^^^^^^^^^^^^^^^^^^^^^^${UserBaseController.userData.page3}');
-        AppFunctions.showSnakBar('Updaed!', 'List added to your data.');
         Get.to(() => UploadIdScreen(), arguments: {'userModel': userModel2});
         isLoading = false;
         update();
@@ -123,7 +121,6 @@ class InterestsScreenController extends GetxController {
   @override
   void onInit() {
     userModel = Get.arguments['userModel'];
-    // AppFunctions.showSnakBar('User Data', userModel.page1.toString());
     super.onInit();
   }
 }

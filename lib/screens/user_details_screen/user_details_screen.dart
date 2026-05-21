@@ -244,16 +244,22 @@ class UserDetailsScreen extends StatelessWidget {
                                               borderRadius:
                                                   AppFunctions.borderRadius(12),
                                             ),
-                                            child: CachedNetworkImage(
-                                              imageUrl: user,
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      Icon(Icons.image),
-                                              placeholder:
-                                                  (context, url) => Center(
-                                                    child:
-                                                        CircularProgressIndicator(),
-                                                  ),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  AppFunctions.borderRadius(12),
+                                              child: CachedNetworkImage(
+                                                // width: double.infinity,
+                                                fit: BoxFit.fill,
+                                                imageUrl: user,
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.image),
+                                                placeholder:
+                                                    (context, url) => Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    ),
+                                              ),
                                             ),
                                           );
                                         },

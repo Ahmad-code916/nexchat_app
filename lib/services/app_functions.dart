@@ -21,9 +21,9 @@ class AppFunctions {
     return BorderRadius.all(Radius.circular(radius));
   }
 
-  static SnackbarController showSnakBar(String title, String message) {
-    return Get.snackbar(title, message, backgroundColor: AppColors.whiteColor);
-  }
+  // static SnackbarController showSnakBar(String title, String message) {
+  //   return Get.snackbar(title, message, backgroundColor: AppColors.whiteColor);
+  // }
 
   static int calculateAge(DateTime dateOfBirth) {
     DateTime today = DateTime.now();
@@ -86,7 +86,7 @@ class AppFunctions {
     if (status.isGranted) {
       print('status-------------->>>>>>>>>>>>.>$status');
       final picker = ImagePicker();
-      final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+      final pickedImage = await picker.pickImage(source: ImageSource.camera);
       if (pickedImage != null) {
         return File(pickedImage.path);
         // image = File(pickedImage.path);

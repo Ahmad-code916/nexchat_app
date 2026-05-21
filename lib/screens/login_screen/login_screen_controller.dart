@@ -68,16 +68,16 @@ class LoginScreenController extends GetxController {
               arguments: {'userModel': UserBaseController.userData},
             );
           } else {
-            AppFunctions.showSnakBar(
-              'Login',
-              'Login to your account successfully!',
-            );
+            // AppFunctions.showSnakBar(
+            //   'Login',
+            //   'Login to your account successfully!',
+            // );
             isLoading = false;
             update();
             Get.offAll(HomeScreen());
           }
         } else {
-          AppFunctions.showSnakBar('Error!', 'User not found');
+          // AppFunctions.showSnakBar('Error!', 'User not found');
           isLoading = false;
           update();
           Get.to(() => PersonalDetailsScreen());

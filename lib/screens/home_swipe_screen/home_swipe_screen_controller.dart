@@ -141,7 +141,7 @@ class HomeSwipeScreenController extends GetxController {
             SetOptions(merge: true),
           );
       await createThread(user);
-      AppFunctions.showSnakBar('Congratulations', 'Your match created');
+      // AppFunctions.showSnakBar('Congratulations', 'Your match created');
       update();
       Get.to(() => MatchSceen());
     } else {
@@ -161,7 +161,7 @@ class HomeSwipeScreenController extends GetxController {
                 .toMap(),
             SetOptions(merge: true),
           );
-      AppFunctions.showSnakBar('Added', 'You liked this profile');
+      // AppFunctions.showSnakBar('Added', 'You liked this profile');
     }
     update();
   }
@@ -179,7 +179,7 @@ class HomeSwipeScreenController extends GetxController {
               .toMap(),
           SetOptions(merge: true),
         );
-    AppFunctions.showSnakBar('Dislike!', 'You dislike this profile');
+    // AppFunctions.showSnakBar('Dislike!', 'You dislike this profile');
     update();
   }
 

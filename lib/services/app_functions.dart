@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:get/get.dart';
 
 class AppFunctions {
   static Widget height(double height) {
@@ -81,16 +82,20 @@ class AppFunctions {
     return degree * pi / 180;
   }
 
-  static Future<File?> pickImage() async {
-    var status = await Permission.camera.request();
+  static Future<File?> pickImage(ImageSource imageSource) async {
+    PermissionStatus status;
+
+    if (imageSource == ImageSource.camera) {
+      status = await Permission.camera.request();
+    } else {
+      status = await Permission.photos.request();
+    }
     if (status.isGranted) {
       print('status-------------->>>>>>>>>>>>.>$status');
       final picker = ImagePicker();
-      final pickedImage = await picker.pickImage(source: ImageSource.camera);
+      final pickedImage = await picker.pickImage(source: imageSource);
       if (pickedImage != null) {
         return File(pickedImage.path);
-        // image = File(pickedImage.path);
-        // update();
       }
     } else {
       Get.dialog(
@@ -99,5 +104,47 @@ class AppFunctions {
       return null;
     }
     return null;
+  }
+
+  static void showDialogToPickImage({required Function(File?) onPickedImage}) {
+    Get.dialog(
+      AlertDialog(
+        title: Text('Pick Image'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            GestureDetector(
+              onTap: () async {
+                File? image = await AppFunctions.pickImage(ImageSource.camera);
+                Navigator.of(Get.context!).pop();
+                onPickedImage(image);
+              },
+              child: Row(
+                spacing: 12,
+                children: [
+                  Icon(Icons.camera_alt, color: AppColors.darkBlueColor),
+                  Text('Camera'),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTap: () async {
+                File? image = await AppFunctions.pickImage(ImageSource.gallery);
+                Navigator.of(Get.context!).pop();
+                onPickedImage(image);
+              },
+              child: Row(
+                spacing: 12,
+                children: [
+                  Icon(Icons.image, color: AppColors.darkBlueColor),
+                  Text('Gallery'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

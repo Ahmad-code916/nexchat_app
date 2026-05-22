@@ -5,10 +5,12 @@ import 'package:destined_app/models/user_model.dart';
 import 'package:destined_app/screens/interests_screen/interests_screen.dart';
 import 'package:destined_app/services/app_functions.dart';
 import 'package:destined_app/services/user_base_controller.dart';
+import 'package:destined_app/utils/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PersonalDetailsScreenController extends GetxController {
@@ -36,8 +38,9 @@ class PersonalDetailsScreenController extends GetxController {
   void selectDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
-      firstDate: DateTime(1990),
+      firstDate: DateTime(1950),
       lastDate: DateTime.now(),
+      currentDate: DateTime(2000),
     );
     if (pickedDate != null) {
       selectedDate = pickedDate;
@@ -46,22 +49,13 @@ class PersonalDetailsScreenController extends GetxController {
   }
 
   void pickImage() async {
-    image = await AppFunctions.pickImage();
-    update();
-    /* var status = await Permission.camera.request();
-    if (status.isGranted) {
-      print('status-------------->>>>>>>>>>>>.>$status');
-      final picker = ImagePicker();
-      final pickedImage = await picker.pickImage(source: ImageSource.camera);
-      if (pickedImage != null) {
-        image = File(pickedImage.path);
+    AppFunctions.showDialogToPickImage(
+      onPickedImage: (pickedFile) {
+        image = pickedFile;
         update();
-      }
-    } else {
-      Get.dialog(
-        AlertDialog(title: Text('Error!'), content: Text('No Image Selected.')),
-      )
-       }*/
+      },
+    );
+    update();
   }
 
   Future<String> uploadImage() async {
@@ -89,19 +83,16 @@ class PersonalDetailsScreenController extends GetxController {
   }
 
   void pickImageAndAdddToList() async {
-    /*  var status = await Permission.camera.request();
-    if (status.isGranted) {
-      print('Status --------->>>>>>>>>>>>>$status');
-      final picker = ImagePicker();
-      final pickedImage = await picker.pickImage(source: ImageSource.camera);*/
-    final pickedImage = await AppFunctions.pickImage();
-    if (pickedImage != null) {
-      extraImages2.add(File(pickedImage.path));
-      update();
-    }
-    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Added');
-    print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^${extraImages2.length}');
-    // }
+    AppFunctions.showDialogToPickImage(
+      onPickedImage: (pickedImage) {
+        if (pickedImage != null) {
+          extraImages2.add(File(pickedImage.path));
+          update();
+          print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Added');
+          print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^${extraImages2.length}');
+        }
+      },
+    );
   }
 
   Future<List<String>> uploadExtraProfileImages() async {

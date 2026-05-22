@@ -95,6 +95,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 controller.pickImage();
+                                // controller.showDialogToPickImage();
                               },
                               child: Container(
                                 margin: EdgeInsets.only(left: 75, top: 90),

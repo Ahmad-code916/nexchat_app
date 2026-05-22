@@ -117,7 +117,7 @@ class HomeSwipeScreenController extends GetxController {
     updatedLikedBy!.add(currentUserId);
     final updatedMyLikes = UserBaseController.userData.myLikes;
     updatedMyLikes!.add(userList[index].uid!);
-    if (UserBaseController.userData.myLikes!.contains(userList[index].uid)) {
+    if (UserBaseController.userData.likedBy!.contains(userList[index].uid)) {
       final updateMyMatches = UserBaseController.userData.matches;
       updateMyMatches!.add(userList[index].uid!);
       final updateOtherMatches = userList[index].matches;

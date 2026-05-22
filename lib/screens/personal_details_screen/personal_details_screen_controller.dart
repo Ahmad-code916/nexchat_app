@@ -5,12 +5,10 @@ import 'package:destined_app/models/user_model.dart';
 import 'package:destined_app/screens/interests_screen/interests_screen.dart';
 import 'package:destined_app/services/app_functions.dart';
 import 'package:destined_app/services/user_base_controller.dart';
-import 'package:destined_app/utils/app_colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PersonalDetailsScreenController extends GetxController {

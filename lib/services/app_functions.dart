@@ -3,11 +3,9 @@ import 'dart:math' as math;
 import 'dart:math';
 import 'package:destined_app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:get/get.dart';
 
 class AppFunctions {
   static Widget height(double height) {
@@ -21,10 +19,6 @@ class AppFunctions {
   static BorderRadius borderRadius(double radius) {
     return BorderRadius.all(Radius.circular(radius));
   }
-
-  // static SnackbarController showSnakBar(String title, String message) {
-  //   return Get.snackbar(title, message, backgroundColor: AppColors.whiteColor);
-  // }
 
   static int calculateAge(DateTime dateOfBirth) {
     DateTime today = DateTime.now();
